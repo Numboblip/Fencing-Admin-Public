@@ -78,7 +78,7 @@ cmdsbar.BackgroundTransparency = 1.000
 cmdsbar.Position = UDim2.new(0, 13, 0, 0)
 cmdsbar.Size = UDim2.new(0, 182, 0, 18)
 cmdsbar.Font = Enum.Font.Code
-cmdsbar.Text = ""
+cmdsbar.Text = "cmds"
 cmdsbar.TextColor3 = Color3.fromRGB(255, 255, 255)
 cmdsbar.TextSize = 14.000
 cmdsbar.TextXAlignment = Enum.TextXAlignment.Left
@@ -109,8 +109,8 @@ logsmain.Parent = ScreenGui
 logsmain.AnchorPoint = Vector2.new(0.5, 0.5)
 logsmain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 logsmain.BackgroundTransparency = 1.000
-logsmain.Position = UDim2.new(0, 100, 0, 383)
-logsmain.Size = UDim2.new(0, 176, 0, 25)
+logsmain.Position = UDim2.new(0, 140, 0, 383)
+logsmain.Size = UDim2.new(0, 258, 0, 25)
 logsmain.Image = "rbxassetid://3570695787"
 logsmain.ImageColor3 = Color3.fromRGB(45, 45, 45)
 logsmain.ScaleType = Enum.ScaleType.Slice
@@ -154,7 +154,7 @@ enter.MouseButton1Down:connect(function()
 	else 
 		if cmdsbar.Text == "hips+" then
 			logs.Text = "hips uppered!"
-			game.Players.LocalPlayer.Character.Humanoid.HipHeight=4
+			game.Players.LocalPlayer.Character.Humanoid.HipHeight=2
 			wait(0.8)
 		else
 			if cmdsbar.Text == "hips-" then
@@ -169,19 +169,50 @@ enter.MouseButton1Down:connect(function()
 						logs.Text = "speed off!"
 						game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
 						else
-						    if cmdsbar.Text == "cmds" then
-						        logs.Text = "press Shift, and f9 for command list"
-						        print("Current commands are; healchar, speed+, speed-, hips-, hips+, and killgui")
+						if cmdsbar.Text == "jumppower+" then
+					logs.Text = "Jumppower Gained!"
+					game.Players.LocalPlayer.Character.Humanoid.JumpPower = 100
 					else
+					    if cmdsbar.Text == "jumppower-" then
+					logs.Text = "Jumppower removed!"
+					game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50 
+					else
+					    if  cmdsbar.Text == "antifling" then
+					    logs.Text = "antifling active!"
+					    local noclip = true char = game.Players.LocalPlayer.Character while true do if noclip == true then for _,v in pairs(char:children()) do pcall(function() if v.className == "Part" then v.CanCollide = false elseif v.ClassName == "Model" then v.Head.CanCollide = false end end) end end game:service("RunService").Stepped:wait() end
+					    else
+						if cmdsbar.Text == "cmds" then
+						        logs.Text = "press Shift, and f9 for command list"
+						        print("Current commands are; healchar, speed+, speed-, hips-, hips+,antifling (holy shit i hate those guys, glad i added antifling), jumppower+, jumppower-,Teleport (put the name of the player in, and nothing else, no tp to) and killgui")
+						else
 							if cmdsbar.Text == "killgui" then
 								ScreenGui:Destroy()
-						end
-					end
-				end
+								else
+								    enter.MouseButton1Down:connect(function()
+                                    wait()
+                                    print("Teleported!")
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[cmdsbar.Text].Character.HumanoidRootPart.CFrame
+                                    end)  
+								
+		end
+		end
+		end
 				
-			end
+    	end
 			
 		end
 		end
 		end
-end)
+		end
+		end
+        end
+        end)
+
+while true do
+    tiptext.Text = "TIP : Type in \"cmds\" in the cmds bar for commands"
+    wait(10)
+    tiptext.Text = "This script was made by Numb_o, for fencing."
+    wait(10)
+    tiptext.Text = "Fact : this script was made for testing purposes!"
+    wait(10)
+end
